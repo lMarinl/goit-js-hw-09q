@@ -1,4 +1,4 @@
-// import Notiflix from 'notiflix';
+import Notiflix from 'notiflix';
 
 const form = document.querySelector('.form');
 
@@ -15,15 +15,18 @@ const amount = parseInt(form.elements.amount.value);
 
   for (let i = 1; i <= amount; i += 1) {
 
- createPromise(i, delay + step * i)
+    createPromise(i, delay + step * i)
+   
   .then(({ position, delay }) => {
-    console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+    // console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+    Notiflix.Notify.info(`✅ Fulfilled promise ${position} in ${delay}ms`)
+    
   })
-  .catch(({ position, delay }) => {
-    console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+      .catch(({ position, delay }) => {
+    Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`)
+    // console.log(`❌ Rejected promise ${position} in ${delay}ms`);
   });
-
-}
+  };
 };
 
 
